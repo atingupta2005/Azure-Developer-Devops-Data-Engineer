@@ -1,52 +1,69 @@
 # Scaling Git for Enterprise DevOps
 ## Lab - Git Branching Model for Continuous Delivery
 - Create branch
-	- git branch feature
-	- git checkout feature
-	- git log
+```
+git branch feature
+git checkout feature
+git log
+```
+
 - Make changes in the file
 - Commit changes
-	- git add *
-	- git commit -m "commits of feature branch"
-	- git log
+```
+git add *
+git commit -m "commits of feature branch"
+git log
+```
+
 - Merge
-	- git checkout master
-	- git merge feature
+```
+git checkout master
+git merge feature
+```
+
 - Git Log in graph
-	- git log --graph --decorate --oneline
+```
+git log --graph --decorate --oneline
+```
 
 ## Lab - Git Branching Model for Continuous Delivery
 - Handling Merge Conflict
-	- Do changes in master branch
-	- Commit
-	- Checkout to feature branch
-	- Do some changes in feature branch
-	- Commit
-	- Checkout to master branch
-	- Merge the changes
-	- Handle merge conflict
+		- Do changes in master branch
+		- Commit
+		- Checkout to feature branch
+		- Do some changes in feature branch
+		- Commit
+		- Checkout to master branch
+		- Merge the changes
+		- Handle merge conflict
 
 ## Lab - Git Branching Model for Continuous Delivery
 - Squash merge
-	- To not to commit the history of feature branch to master branch
-	- checkout to feature branch
-	- do multiple commits
-	- checkout to master branch
-	- git merge --squash feature
-	- git log
+		- To not to commit the history of feature branch to master branch
+		- checkout to feature branch
+		- do multiple commits
+		- checkout to master branch
+		- Merge Changes
+		```
+		git merge --squash feature
+		git log
+		```
 
 ## Lab - Push branch to Azure Repo
 - Create a blank Azure Repo
 - Connect local repo to azure repo by following instructions
-- git push origin master
-- git push --all origin
+- Push changes
+```
+git push origin master
+git push --all origin
+```
 - Review Azure Repo
 
 ## Lab - Pull Requests
 - Change Master branch policies in Azure Repo Branches
 - Enable "Require Number of Reviewers"
 	- Enable "Allow to approve their own changes"
-- Now unable to push to master branch
+- Now if we push the changes to master then its unable to push to master branch
 - Create a new branch and push that
 - Create pull request and then approve the merge
 
@@ -76,8 +93,8 @@
 
 
 ## Lab - Fork a repo
-- How to fork a GitHub repo
-- How to fork a Azure Repo
+- How to fork a GitHub repo?
+- How to fork a Azure Repo?
 
 ## Lab - Githook
 - File Name - .git\hooks\pre-commit
