@@ -58,15 +58,26 @@
 - Run the pipeline
 - Verify that the AKS is ready in Azure Portal
 
-## Deploy Builds as Microservices to Kubernetes
+## Build Docker Image and Push to Dockerhub
 - Create a Service Connection to Kubernetes Cluster
     -  Name: azure-kubernetes-connection
     -  Namespace: Default
+-  Create a Service connection to Docker Hub
+    -  Name: atingupta2005-docker-hub
+-  Refer deployment.yml which contains all the configuration to deploy our container to K8S cluster
+-  Do necessary changes in deployment.yml to specify image repository location
 -  Create new pipeline using
     -  Repo: https://github.com/atingupta2005/azure-devops-sample-pipelines
     -  Branch: 06-azure-kubernetes-code-ci-cd-pipeline
--  Refer deployment.yml which contains all the configuration to deploy our container to K8S cluster
--  Create a Service connection to Docker Hub
-    -  Name: atingupta2005-docker-hub
-- 
--  
+-  Do necessary changes in pipeline to specify image repository location
+-  Run pipeline
+-  Notice an image is deployed to Docker Hub
+
+## Deploy Builds as Microservices to Kubernetes
+- Create a release pipeline
+- Specify to take artifacts from Build Pipeline
+- Specify location of manifest - deployment.yml
+- Action: Apply
+- Run pipeline
+- Open GUI of Kubernetes cluster using Azure Portal
+
