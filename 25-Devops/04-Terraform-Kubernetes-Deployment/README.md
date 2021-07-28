@@ -6,47 +6,44 @@
 
 
 ### Review the files in GitHub Repo
-    - Review files for Kubernetes cluster
-        - /configuration/iaac/azure/kubernetes
+  - Review files for Kubernetes cluster
+    - /configuration/iaac/azure/kubernetes
 
 ###  Setup Client ID, Secret and Public Key
-    - Connect to the Virtual VM
-    - Install Azure CLI
+  - Connect to the Virtual VM
+  - Install Azure CLI
     ```
     Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
     ```
-    - Connect to Azure Portal
+  - Connect to Azure Portal
     ```
     az login
     ```
-    - Copy the Subscription ID from the output of above command
-    - Create Service Principal
+  - Copy the Subscription ID from the output of above command
+  - Create Service Principal
     ```
     az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscription-id>"
     ```
 
-    - Save these credentials securely
-    - Create SSH Public Key
+  - Save these credentials securely
+  - Create SSH Public Key
     ```
     ssh-keygen -m PEM -t rsa -b 4096 -f azure_rsa
     ```
 
 ### Create DevOps Pipeline to deploy AKS
 - Create service connection
-    - Open Project Settings\Service Connections
-    - Click - New Service connection
-        - Name: azure-resource-manager-service-connection
-        - Type: Azure Resource Manager
-        - Service principal (manual)
+  - Open Project Settings\Service Connections
+  - Click - New Service connection
+     - Name: azure-resource-manager-service-connection
+     - Type: Azure Resource Manager
+     - Service principal (manual)
 
 - Install Terraform Plugins
     - https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
     - https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks
 - Create a new pipeline and refer the code from:
     - https://github.com/atingupta2005/azure-devops-sample-pipelines/blob/05-azure-kubernetes-cluster-iaac-pipeline/05-azure-kubernetes-cluster-iaac-pipeline.yml
-- Create a resource group in Azure Portal
-    - Name: terraform-backend-rg
-    - Location: westeurope
 - Modify pipeline to change the references to:
     - Service Connections (If required)
     - Unique Storage account name in Backend configuration
@@ -61,4 +58,28 @@
 - Run the pipeline
 - Verify that the AKS is ready in Azure Portal
 
+## Build Docker Image and Push to Dockerhub
+- Create a Service Connection to Kubernetes Cluster
+    -  Name: azure-kubernetes-connection
+    -  Namespace: Default
+-  Create a Service connection to Docker Hub
+    -  Name: atingupta2005-docker-hub
+-  Refer deployment.yml which contains all the configuration to deploy our container to K8S cluster
+-  Do necessary changes in deployment.yml to specify image repository location
+-  Create new pipeline using
+    -  Repo: https://github.com/atingupta2005/azure-devops-sample-pipelines
+    -  Branch: 06-azure-kubernetes-code-ci-cd-pipeline
+-  Do necessary changes in pipeline to specify image repository location
+-  Run pipeline
+-  Notice an image is deployed to Docker Hub
+
 ## Deploy Builds as Microservices to Kubernetes
+- Create a release pipeline
+- Specify to take artifacts from Build Pipeline
+- Specify location of manifest - deployment.yml
+- Action: Apply
+- Run pipeline
+- Open GUI of Kubernetes cluster using Azure Portal
+- Collect IP Address of Currency Exchange from "Services and Ingress"
+- Open on Browser: http://<ip-address>:8000
+
