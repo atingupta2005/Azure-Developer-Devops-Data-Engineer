@@ -80,4 +80,6 @@
 - Action: Apply
 - Run pipeline
 - Open GUI of Kubernetes cluster using Azure Portal
+- Collect IP Address of Currency Exchange from "Services and Ingress"
+- Open on Browser: http://<ip-address>:8000
 
