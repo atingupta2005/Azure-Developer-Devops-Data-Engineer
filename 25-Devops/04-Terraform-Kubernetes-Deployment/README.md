@@ -44,9 +44,6 @@
     - https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks
 - Create a new pipeline and refer the code from:
     - https://github.com/atingupta2005/azure-devops-sample-pipelines/blob/05-azure-kubernetes-cluster-iaac-pipeline/05-azure-kubernetes-cluster-iaac-pipeline.yml
-- Create a resource group in Azure Portal
-    - Name: terraform-backend-rg
-    - Location: westeurope
 - Modify pipeline to change the references to:
     - Service Connections (If required)
     - Unique Storage account name in Backend configuration
