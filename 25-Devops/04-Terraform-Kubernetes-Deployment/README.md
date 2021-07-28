@@ -10,34 +10,34 @@
     - /configuration/iaac/azure/kubernetes
 
 ###  Setup Client ID, Secret and Public Key
-    - Connect to the Virtual VM
-    - Install Azure CLI
+  - Connect to the Virtual VM
+  - Install Azure CLI
     ```
     Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
     ```
-    - Connect to Azure Portal
+  - Connect to Azure Portal
     ```
     az login
     ```
-    - Copy the Subscription ID from the output of above command
-    - Create Service Principal
+  - Copy the Subscription ID from the output of above command
+  - Create Service Principal
     ```
     az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscription-id>"
     ```
 
-    - Save these credentials securely
-    - Create SSH Public Key
+  - Save these credentials securely
+  - Create SSH Public Key
     ```
     ssh-keygen -m PEM -t rsa -b 4096 -f azure_rsa
     ```
 
 ### Create DevOps Pipeline to deploy AKS
 - Create service connection
-    - Open Project Settings\Service Connections
-    - Click - New Service connection
-        - Name: azure-resource-manager-service-connection
-        - Type: Azure Resource Manager
-        - Service principal (manual)
+  - Open Project Settings\Service Connections
+  - Click - New Service connection
+     - Name: azure-resource-manager-service-connection
+     - Type: Azure Resource Manager
+     - Service principal (manual)
 
 - Install Terraform Plugins
     - https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
