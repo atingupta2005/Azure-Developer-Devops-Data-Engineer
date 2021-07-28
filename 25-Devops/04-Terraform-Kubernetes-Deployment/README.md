@@ -59,3 +59,14 @@
 - Verify that the AKS is ready in Azure Portal
 
 ## Deploy Builds as Microservices to Kubernetes
+- Create a Service Connection to Kubernetes Cluster
+    -  Name: azure-kubernetes-connection
+    -  Namespace: Default
+-  Create new pipeline using
+    -  Repo: https://github.com/atingupta2005/azure-devops-sample-pipelines
+    -  Branch: 06-azure-kubernetes-code-ci-cd-pipeline
+-  Refer deployment.yml which contains all the configuration to deploy our container to K8S cluster
+-  Create a Service connection to Docker Hub
+    -  Name: atingupta2005-docker-hub
+- 
+-  
