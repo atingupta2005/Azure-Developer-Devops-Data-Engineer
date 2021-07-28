@@ -6,8 +6,8 @@
 
 
 ### Review the files in GitHub Repo
-    - Review files for Kubernetes cluster
-        - /configuration/iaac/azure/kubernetes
+  - Review files for Kubernetes cluster
+    - /configuration/iaac/azure/kubernetes
 
 ###  Setup Client ID, Secret and Public Key
     - Connect to the Virtual VM
